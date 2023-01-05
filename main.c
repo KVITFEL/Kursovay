@@ -305,8 +305,7 @@ void read_int_num(FILE* stream, int* num, char* message, int first, int second, 
 
     while (flag)
     {
-        printf("%s", message);
-        printf(" [%d, %d]: ", first, second);
+        printf("%s: ", message);
 
         fgets(tmp_str, len + 2, stream);
 
