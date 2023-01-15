@@ -41,184 +41,33 @@ typedef struct
     int count; // количество веб-камер в массиве
 } webcams_t;
 
-/**
- * Данная функция выводит пункты меню в соответствующий поток
- * @param stream Указатель на поток вывода
- * @return Код возврата
- */
 int print_menu(FILE* stream);
-
-/**
- * Данная функция запрашивает количество новых веб-камер, считывает и добавляет их в соответствующий массив
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int add_webcams(webcams_t* webcams);
-
-/**
- * Данная функция сбрасывает буфер
- * @param str Указатель на буфер
- */
 void flush(char* str);
-
-/**
- * Данная функция проверяет, является ли заданный символ цифрой
- * @param symb Символ для проверки
- * @return Код возврата
- */
 int is_digit(char symb);
-
-/**
- * Данная функция проверяет, является ли заданная последовательность числом
- * @param str Указатель на строку
- * @param count Количество символов в строке
- * @return Код возврата
- */
 int is_sequence_of_digits(char* str, int count);
-
-/**
- * Данная функция считывает из соответствующего потока целое число из заданного диапазона
- * @param stream Указатель на поток ввода
- * @param num Указатель на переменную для хранения целого числа
- * @param message Сообщение при запросе ввода
- * @param first Начальное значение диапазона
- * @param second Конечное значение диапазона
- * @param len Максимальная длина числа при его переводе в строку
- * @return Код возврата
- */
 int read_int_num(FILE* stream, int* num, char* message, int first, int second, size_t len);
-
-/**
- * Данная функция проверяет, является ли заданная последовательность вещественным числом
- * @param str Указатель на строку
- * @param count Количество символов в строке
- * @return Код возврата
- */
 int is_double_sequence(char* str, int count);
-
-/**
- * Данная функция считывает из соответствующего потока вещественное число из заданного диапазона
- * @param stream Указатель на поток ввода
- * @param num Указатель на переменную для хранения вещественного числа
- * @param message Сообщение при запросе ввода
- * @param first Начальное значение диапазона
- * @param second Конечное значение диапазона
- * @param len Максимальная длина числа при его переводе в строку
- * @return Код возврата
- */
 int read_double_num(FILE* stream, double* num, char* message, double first, double second, size_t len);
-
-/**
- * Данная функция считывает из соответствующего потока строку определенной длины
- * @param stream Указатель на поток ввода
- * @param string Указатель на переменную для хранения строки
- * @param message Сообщение при запросе ввода
- * @param len Максимальная длина строки
- * @return Код возврата
- */
 int read_string(FILE* stream, char* string, char* message, size_t len);
-
-/**
- * Данная функция считывает веб-камеру из консоли и возвращает ее в качестве результата
- * @return Считанная веб-камера
- */
 webcam_t read_webcam_from_console();
-
-/**
- * Данная функция выводит в консоль соответствующий массив веб-камер
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int print_webcams_in_console(webcams_t* webcams);
-
-/**
- * Данная функция выводит в консоль соответствующую веб-камеру
- * @param webcam Указатель на переменную для хранения веб-камеры
- * @return Код возврата
- */
 int print_webcam_in_console(webcam_t* webcam);
-
-/**
- * Данная функция запрашивает имя выходного файла и записывает в него соответствующий массив веб-камер
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int save_webcams_in_file(webcams_t* webcams);
-
-/**
- * Данная функция выводит в соответствующий файл массив веб-камер
- * @param file Файловый указатель
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int print_webcams_in_file(FILE* file, webcams_t* webcams);
-
-/**
- * Данная функция запрашивает имя файла с данными, считывает из него веб-камеры и заполняет ими соответствующий массив
- * @param webcams Указатель на массив веб-камер
- * @param flag_clear Флаг для очистки предыдущих веб-камер
- * @return Код возврата
- */
 int read_webcams_from_file(webcams_t* webcams, int flag_clear);
-
-/**
- * Данная функция считывает из файла веб-камеру и записывает полученные данные в соответствующую переменную
- * @param file Файловый указатель
- * @param webcam Указатель на переменную для хранения информации о веб-камере
- * @return Код возврата
- */
 int read_webcam_from_file(FILE* file, webcam_t* webcam);
-
-/**
- * Данная функция запрашивает угол обзора, производит поиск данных веб-камер в соответствующем массиве и выводит их в консоль
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int search_webcams_by_view_angle(webcams_t* webcams);
-
-/**
- * Данная функция запрашивает тип подключения, производит поиск данных веб-камер в соответствующем массиве и выводит их в консоль
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int search_webcams_by_connection_type(webcams_t* webcams);
-
-/**
- * Данная функция сортирует соответствующий массив веб-камер по возрастанию разрешений с помощью функции qsort (быстрая сортировка) и выводит его в консоль
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int sort_by_resolution_and_print_webcams(webcams_t* webcams);
-
-/**
- * Данная функция сравнивает разрешения соответствующих веб-камер и возвращает в качестве результата их разность
- * (> 0 - разрешение первой веб-камеры больше, == 0 - разрешения равны, < 0 - разрешение второй веб-камеры больше)
- * @param first Указатель на первую веб-камеру
- * @param second Указатель на вторую веб-камеру
- * @return Разность разрешений
- */
 int webcams_cmp_resolution(const void* first, const void* second);
-
-/**
- * Данная функция меняет местами соответствующие элементы массива веб-камер
- * @param first Указатель на первую структур
- * @param second Указатель на вторую структуру
- * @return Код возврата
- */
 int swap(webcam_t* first, webcam_t* second);
-
-/**
- * Данная функция очищает массив веб-камер
- * @param webcams Указатель на массив веб-камер
- * @return Код возврата
- */
 int clear_webcams(webcams_t* webcams);
 
 int main()
 {
-    setlocale(LC_ALL, "ru");
     printf("\n");
-
+    setlocale(LC_ALL, "ru");
     webcams_t webcams = { .count = 0 };
 
     int option;
@@ -264,6 +113,10 @@ int main()
     return 0;
 }
 
+/*
+Данная функция выводит пункты меню в соответствующий поток
+stream Указатель на поток вывода
+*/
 int print_menu(FILE* stream)
 {
     if (!stream)
@@ -286,6 +139,11 @@ int print_menu(FILE* stream)
 
     return ERR_OK;
 }
+
+/*
+Данная функция запрашивает количество новых веб-камер, считывает и добавляет их в соответствующий массив
+webcams Указатель на массив веб-камер
+*/
 
 int add_webcams(webcams_t* webcams)
 {
@@ -315,11 +173,21 @@ int add_webcams(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция сбрасывает буфер
+str Указатель на буфер
+*/
+
 void flush(char* str)
 {
     if (str[strlen(str) - 1] != '\n')
         while (getchar() != '\n');
 }
+
+/*
+Данная функция проверяет, является ли заданный символ цифрой
+symb Символ для проверки
+*/
 
 int is_digit(char symb)
 {
@@ -328,6 +196,12 @@ int is_digit(char symb)
         return 0;
     return 1;
 }
+
+/*
+Данная функция проверяет, является ли заданная последовательность числом
+str Указатель на строку
+count Количество символов в строке
+*/
 
 int is_sequence_of_digits(char* str, int count)
 {
@@ -343,6 +217,16 @@ int is_sequence_of_digits(char* str, int count)
 
     return flag;
 }
+
+/*
+Данная функция считывает из соответствующего потока целое число из заданного диапазона
+stream Указатель на поток ввода
+num Указатель на переменную для хранения целого числа
+message Сообщение при запросе ввода
+first Начальное значение диапазона
+second Конечное значение диапазона
+len Максимальная длина числа при его переводе в строку
+*/
 
 int read_int_num(FILE* stream, int* num, char* message, int first, int second, size_t len)
 {
@@ -398,6 +282,12 @@ int read_int_num(FILE* stream, int* num, char* message, int first, int second, s
     return ERR_OK;
 }
 
+/*
+Данная функция проверяет, является ли заданная последовательность вещественным числом
+str Указатель на строку
+count Количество символов в строке
+*/
+
 int is_double_sequence(char* str, int count)
 {
     char* p_plus = strrchr(str, '+');
@@ -436,6 +326,16 @@ int is_double_sequence(char* str, int count)
 
     return ERR_OK;
 }
+
+/*
+Данная функция считывает из соответствующего потока вещественное число из заданного диапазона
+stream Указатель на поток ввода
+num Указатель на переменную для хранения вещественного числа
+message Сообщение при запросе ввода
+first Начальное значение диапазона
+second Конечное значение диапазона
+len Максимальная длина числа при его переводе в строку 
+*/
 
 int read_double_num(FILE* stream, double* num, char* message, double first, double second, size_t len)
 {
@@ -483,6 +383,14 @@ int read_double_num(FILE* stream, double* num, char* message, double first, doub
     return ERR_OK;
 }
 
+/*
+Данная функция считывает из соответствующего потока строку определенной длины
+stream Указатель на поток ввода
+string Указатель на переменную для хранения строки
+message Сообщение при запросе ввода
+len Максимальная длина строки
+*/
+
 int read_string(FILE* stream, char* string, char* message, size_t len)
 {
     int flag = 1;
@@ -521,6 +429,11 @@ int read_string(FILE* stream, char* string, char* message, size_t len)
     return ERR_OK;
 }
 
+/*
+Данная функция считывает веб-камеру из консоли и возвращает ее в качестве результата
+return Считанная веб-камера
+*/
+
 webcam_t read_webcam_from_console()
 {
     FILE* stream = stdin;
@@ -536,6 +449,11 @@ webcam_t read_webcam_from_console()
 
     return webcam;
 }
+
+/*
+Данная функция выводит в консоль соответствующий массив веб-камер
+webcams Указатель на массив веб-камер
+*/
 
 int print_webcams_in_console(webcams_t* webcams)
 {
@@ -561,6 +479,11 @@ int print_webcams_in_console(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция выводит в консоль соответствующую веб-камеру
+webcam Указатель на переменную для хранения веб-камеры
+*/
+
 int print_webcam_in_console(webcam_t* webcam)
 {
     if (!webcam)
@@ -578,6 +501,11 @@ int print_webcam_in_console(webcam_t* webcam)
 
     return ERR_OK;
 }
+
+/*
+Данная функция запрашивает имя выходного файла и записывает в него соответствующий массив веб-камер
+webcams Указатель на массив веб-камер
+*/
 
 int save_webcams_in_file(webcams_t* webcams)
 {
@@ -618,6 +546,12 @@ int save_webcams_in_file(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция выводит в соответствующий файл массив веб-камер
+file Файловый указатель
+webcams Указатель на массив веб-камер
+*/
+
 int print_webcams_in_file(FILE* file, webcams_t* webcams)
 {
     if (!file || !webcams)
@@ -638,6 +572,12 @@ int print_webcams_in_file(FILE* file, webcams_t* webcams)
 
     return ERR_OK;
 }
+
+/*
+Данная функция запрашивает имя файла с данными, считывает из него веб-камеры и заполняет ими соответствующий массив
+webcams Указатель на массив веб-камер
+flag_clear Флаг для очистки предыдущих веб-камер
+*/
 
 int read_webcams_from_file(webcams_t* webcams, int flag_clear)
 {
@@ -695,6 +635,12 @@ int read_webcams_from_file(webcams_t* webcams, int flag_clear)
     return ERR_OK;
 }
 
+/*
+Данная функция считывает из файла веб-камеру и записывает полученные данные в соответствующую переменную
+file Файловый указатель
+webcam Указатель на переменную для хранения информации о веб-камере
+*/
+
 int read_webcam_from_file(FILE* file, webcam_t* webcam)
 {
     if (!file || !webcam)
@@ -714,6 +660,11 @@ int read_webcam_from_file(FILE* file, webcam_t* webcam)
 
     return ERR_OK;
 }
+
+/*
+Данная функция запрашивает угол обзора, производит поиск данных веб-камер в соответствующем массиве и выводит их в консоль
+webcams Указатель на массив веб-камер
+*/
 
 int search_webcams_by_view_angle(webcams_t* webcams)
 {
@@ -752,6 +703,11 @@ int search_webcams_by_view_angle(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция запрашивает тип подключения, производит поиск данных веб-камер в соответствующем массиве и выводит их в консоль
+webcams Указатель на массив веб-камер
+*/
+
 int search_webcams_by_connection_type(webcams_t* webcams)
 {
     if (!webcams)
@@ -787,6 +743,11 @@ int search_webcams_by_connection_type(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция сортирует соответствующий массив веб-камер по возрастанию разрешений с помощью функции qsort (быстрая сортировка) и выводит его в консоль
+webcams Указатель на массив веб-камер
+*/
+
 int sort_by_resolution_and_print_webcams(webcams_t* webcams)
 {
     if (!webcams)
@@ -808,12 +769,26 @@ int sort_by_resolution_and_print_webcams(webcams_t* webcams)
     return ERR_OK;
 }
 
+/*
+Данная функция сравнивает разрешения соответствующих веб-камер и возвращает в качестве результата их разность
+(> 0 - разрешение первой веб-камеры больше, == 0 - разрешения равны, < 0 - разрешение второй веб-камеры больше)
+first Указатель на первую веб-камеру
+second Указатель на вторую веб-камеру
+return Разность разрешений
+*/
+
 int webcams_cmp_resolution(const void* first, const void* second)
 {
     webcam_t first_webcam = *(webcam_t*)first;
     webcam_t second_webcam = *(webcam_t*)second;
     return (first_webcam.resolution.width * first_webcam.resolution.height) - (second_webcam.resolution.width * second_webcam.resolution.height);
 }
+
+/*
+Данная функция меняет местами соответствующие элементы массива веб-камер
+first Указатель на первую структур
+second Указатель на вторую структуру
+*/
 
 int swap(webcam_t* first, webcam_t* second)
 {
@@ -829,6 +804,11 @@ int swap(webcam_t* first, webcam_t* second)
 
     return ERR_OK;
 }
+
+/*
+Данная функция очищает массив веб-камер
+webcams Указатель на массив веб-камер
+*/
 
 int clear_webcams(webcams_t* webcams)
 {
